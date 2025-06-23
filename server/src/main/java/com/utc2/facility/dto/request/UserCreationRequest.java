@@ -16,7 +16,7 @@ import java.util.Set;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserCreationRequest {
     @NotBlank String userId;
-    @NotBlank String username;
+    @NotBlank @Size(min = 4, message = "USERNAME_INVALID") String username;
     @NotBlank @Email String email;
     @NotBlank String fullName;
     @NotBlank String roleName;
