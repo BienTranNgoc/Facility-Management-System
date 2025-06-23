@@ -197,7 +197,7 @@ public class ButtonNavController {
             case "yêu cầu quá hạn"-> "overdueRequest.fxml"; // Trong /com/utc2/facilityui/view/
             case "quản lý cơ sở vật chất" -> "manageFacility.fxml";
             case "quản lý đặt phòng" -> "manageBookings.fxml"; // (tên này dùng trong SidebarMenuController)
-
+            case "bảo trì"-> "maintenance.fxml";
             default -> {
                 System.err.println("ButtonNavController - getPageFile: Không có FXML nào được ánh xạ cho tên trang: '" + pageName + "'. Trả về trang chủ mặc định 'home.fxml'.");
                 yield "home.fxml"; // Trang mặc định nếu không khớp

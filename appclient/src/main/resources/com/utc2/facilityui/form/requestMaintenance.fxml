@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="417.0" prefWidth="577.0" stylesheets="@../styles/mainUI.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.utc2.facilityui.controller.room.ReportRoomController">
+<AnchorPane prefHeight="417.0" prefWidth="577.0" stylesheets="@../styles/mainUI.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.utc2.facilityui.controller.room.RequestMaintenanceController">
     <children>
         <BorderPane layoutX="1.0" layoutY="1.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="1.0">
             <top>
@@ -29,29 +29,29 @@
                 <AnchorPane prefHeight="291.0" prefWidth="590.0" BorderPane.alignment="CENTER">
                     <children>
                         <TextArea fx:id="description" layoutX="40.0" layoutY="75.0" prefHeight="185.0" prefWidth="501.0" style="-fx-text-fill: #c3b19a;" />
-                  <ComboBox layoutX="41.0" layoutY="23.0" prefHeight="36.0" prefWidth="501.0" promptText="Thiết bị hoặc vấn đề(*)" style="-fx-font-size: 15px; -fx-cursor: hand; -fx-background-color: white;">
-                     <styleClass>
-                        <String fx:value="white-bg" />
-                        <String fx:value="shadow" />
-                     </styleClass>
-                  </ComboBox>
+                        <ComboBox fx:id="defaultEquipments" layoutX="41.0" layoutY="23.0" prefHeight="36.0" prefWidth="501.0" promptText="Thiết bị hoặc vấn đề(*)" style="-fx-font-size: 15px; -fx-cursor: hand; -fx-background-color: white;">
+                            <styleClass>
+                                <String fx:value="white-bg" />
+                                <String fx:value="shadow" />
+                            </styleClass>
+                        </ComboBox>
                     </children>
                 </AnchorPane>
             </center>
             <bottom>
                 <AnchorPane prefHeight="92.0" prefWidth="577.0" BorderPane.alignment="CENTER">
                     <children>
-                        <Button fx:id="bntAdd" layoutX="143.0" layoutY="23.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="291.0" style="-fx-background-color: #b52828; -fx-cursor: hand; -fx-text-fill: white;" styleClass="shadow" text="Gửi báo cáo sự cố">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="22.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/warning.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
+                        <Button fx:id="bntAdd" layoutX="163.0" layoutY="23.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="271.0" style="-fx-background-color: #b52828; -fx-cursor: hand; -fx-text-fill: white;" styleClass="shadow" text="Gửi báo cáo sự cố">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="22.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/warning.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
                         </Button>
                     </children>
                 </AnchorPane>

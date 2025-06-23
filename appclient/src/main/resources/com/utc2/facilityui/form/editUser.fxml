@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="443.0" prefWidth="672.0" spacing="15.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.utc2.facilityui.controller.EditUserController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <Label alignment="CENTER" prefHeight="27.0" prefWidth="652.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Chỉnh sửa thông tin tài khoản">
+        <font>
+            <Font size="16.0" />
+        </font></Label>
+    <Label fx:id="userid" alignment="CENTER" prefHeight="20.0" prefWidth="643.0" text="ID:">
+        <font>
+            <Font size="14.0" />
+        </font>
+    </Label>
+   <VBox prefHeight="111.0" prefWidth="632.0">
+      <children>
+
+            <Label prefHeight="47.0" prefWidth="121.0" text="Tên tài khoản: ">
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Label>
+            <TextField fx:id="name" prefHeight="50.0" prefWidth="560.0">
+                <font>
+                    <Font size="13.0" />
+                </font>
+         </TextField>
+      </children>
+   </VBox>
+   <VBox prefHeight="122.0" prefWidth="632.0">
+      <children>
+
+            <Label prefHeight="45.0" prefWidth="157.0" text="Họ và tên (*):">
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Label>
+            <TextField fx:id="fullName" prefHeight="50.0" prefWidth="632.0">
+                <font>
+                    <Font size="13.0" />
+                </font></TextField>
+      </children>
+   </VBox>
+   <VBox prefHeight="87.0" prefWidth="632.0">
+      <children>
+            <ComboBox fx:id="roleName" prefHeight="47.0" prefWidth="632.0" stylesheets="@../styles/mainUI.css">
+                <styleClass>
+                    <String fx:value="shadow" />
+                    <String fx:value="white-bg" />
+                </styleClass>
+            </ComboBox>
+      </children>
+   </VBox>
+    <HBox alignment="CENTER_RIGHT" spacing="10.0">
+        <padding>
+            <Insets top="15.0" />
+        </padding>
+        <Button fx:id="saveButton" onAction="#handleSaveAction" defaultButton="true" mnemonicParsing="false" prefHeight="36.0" prefWidth="91.0" styleClass="bnt-save" stylesheets="@../styles/mainUI.css" text="Lưu thay đổi" />
+        <Button fx:id="cancelButton" onAction="#handleCancelAction" cancelButton="true" mnemonicParsing="false" styleClass="bnt-cancel" stylesheets="@../styles/mainUI.css" text="Hủy bỏ" />
+    </HBox>
+</VBox>

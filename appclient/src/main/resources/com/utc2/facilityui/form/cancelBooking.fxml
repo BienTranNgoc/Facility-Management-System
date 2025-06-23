@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="540.0" prefWidth="467.0" stylesheets="@../styles/mainUI.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.utc2.facilityui.controller.booking.CancelBookingController">
+    <children>
+        <BorderPane layoutX="1.0" layoutY="1.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="1.0">
+            <top>
+                <AnchorPane prefHeight="93.0" prefWidth="535.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="80.0" layoutX="204.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/warning-sign.png" />
+                     </image>
+                  </ImageView>
+               </children>
+                </AnchorPane>
+            </top>
+            <center>
+                <AnchorPane prefHeight="291.0" prefWidth="590.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <TextArea fx:id="reasonTextArea" layoutX="25.0" layoutY="213.0" prefHeight="91.0" prefWidth="417.0" promptText="Nhập lý do từ chối" style="-fx-text-fill: #c3b19a;" />
+                        <Label alignment="CENTER" prefHeight="47.0" prefWidth="467.0" text="Xác nhận từ chối">
+                            <font>
+                                <Font name="System Bold" size="25.0" />
+                            </font>
+                        </Label>
+                  <Label fx:id="name" layoutX="31.0" layoutY="56.0" prefHeight="122.0" prefWidth="405.0" text="Bạn có chắc chắn muốn từ chối yêu cầu đặt phòng nameRoom của userName?">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="33.0" layoutY="186.0" text="Lý do từ chối (*):">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                    </children>
+                </AnchorPane>
+            </center>
+            <bottom>
+                <AnchorPane prefHeight="104.0" prefWidth="467.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Button fx:id="bntAdd" layoutX="268.0" layoutY="22.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="128.0" style="-fx-background-color: #b52828; -fx-cursor: hand; -fx-text-fill: white;" styleClass="shadow" text="Từ chối yêu cầu">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Button>
+                  <Button fx:id="bntCancel" layoutX="81.0" layoutY="22.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="128.0" style="-fx-cursor: hand;" text="Hủy bỏ">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="shadow" />
+                        <String fx:value="bnt-cancel" />
+                        <String fx:value="b" />
+                     </styleClass>
+                  </Button>
+                    </children>
+                </AnchorPane>
+            </bottom>
+        </BorderPane>
+    </children>
+</AnchorPane>
