@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.utc2.facilityui.controller.ManageEquipmentsController">
+
+    <!-- Padding xung quanh -->
+    <padding>
+        <Insets left="25" right="25" top="20" />
+    </padding>
+
+    <!-- TOP: Title + Control Buttons + Filters -->
+    <top>
+        <VBox spacing="15">
+            <!-- Title -->
+            <Label text="Quản lý thiết bị">
+                <font>
+                    <Font name="Arial Bold" size="32.0" />
+                </font>
+                <textFill>
+                    <LinearGradient endX="1.0" endY="1.0">
+                        <stops>
+                            <Stop color="#1976d2" offset="0.0" />
+                            <Stop color="#00bcd4" offset="1.0" />
+                        </stops>
+                    </LinearGradient>
+                </textFill>
+            </Label>
+
+            <!-- Top control row -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Button fx:id="addEquipmentButton" onAction="#handleAddEquipment" mnemonicParsing="false" prefHeight="40" style="-fx-background-color: #1976d2; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px;">
+                    <graphic>
+                        <HBox alignment="CENTER">
+                            <Label style="-fx-text-fill: white; -fx-font-size: 13px;" text="THÊM THIẾT BỊ" />
+                            <ImageView fitHeight="16" fitWidth="16">
+                                <image>
+                                    <Image url="@../images/calendar.png" />
+                                </image>
+                                <HBox.margin>
+                                    <Insets left="10.0" />
+                                </HBox.margin>
+                            </ImageView>
+                        </HBox>
+                    </graphic>
+                </Button>
+
+                <Region fx:id="spacer" HBox.hgrow="ALWAYS" />
+
+                <Button onAction="#handleExportBookingsPDF" mnemonicParsing="false" prefHeight="40" style="-fx-background-color: #1976d2; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px;">
+                    <graphic>
+                        <HBox alignment="CENTER">
+                            <Label style="-fx-text-fill: white; -fx-font-size: 13px;" text="XUẤT BÁO CÁO" />
+                            <ImageView fitHeight="16" fitWidth="16">
+                                <image>
+                                    <Image url="@../images/download.png" />
+                                </image>
+                                <HBox.margin>
+                                    <Insets left="5.0" />
+                                </HBox.margin>
+                            </ImageView>
+                        </HBox>
+                    </graphic>
+                </Button>
+            </HBox>
+            <VBox alignment="TOP_LEFT" prefWidth="1150" spacing="8">
+                <!-- Label hàng đầu tiên -->
+                <HBox alignment="CENTER_LEFT" spacing="160.0">
+                    <Text style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Tên thiết bị:" />
+                    <Text style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Phòng:">
+                        <HBox.margin>
+                            <Insets />
+                        </HBox.margin></Text>
+                    <Text style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Loại model:">
+                        <HBox.margin>
+                            <Insets left="13.0" />
+                        </HBox.margin></Text>
+                </HBox>
+
+                <!-- ComboBox lọc -->
+                <HBox alignment="CENTER_LEFT" spacing="20">
+                    <ComboBox fx:id="filterByNameComboBox" prefWidth="220" promptText="Lọc theo tên thiết bị" style="-fx-background-color: #ffffff; -fx-border-color: #ccc; -fx-border-radius: 5px; -fx-padding: 6;" />
+
+                    <ComboBox fx:id="filterByRoomComboBox" prefWidth="200" promptText="Lọc theo phòng" style="-fx-background-color: #ffffff; -fx-border-color: #ccc; -fx-border-radius: 5px; -fx-padding: 6;" />
+
+                    <ComboBox fx:id="filterByModelComboBox" prefWidth="220" promptText="Lọc theo loại model" style="-fx-background-color: #ffffff; -fx-border-color: #ccc; -fx-border-radius: 5px; -fx-padding: 6;" />
+
+                    <Button fx:id="resetButton" onAction="#handleReset" prefHeight="39.0" prefWidth="66.0" style="-fx-background-color: #1976d2; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5px; -fx-padding: 8 16;" text="RESET" />
+                </HBox>
+            </VBox>
+
+        </VBox>
+    </top>
+
+    <!-- CENTER: Table -->
+    <center>
+        <HBox alignment="TOP_LEFT" spacing="20">
+            <!-- TableView bên trái -->
+            <TableView fx:id="equipmentTable" stylesheets="@../styles/manageEquipment.css" HBox.hgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colName" prefWidth="200" text="Tên thiết bị" />
+                    <TableColumn fx:id="colModel" prefWidth="150" text="Model" />
+                    <TableColumn fx:id="colRoom" prefWidth="120" text="Phòng" />
+                    <TableColumn fx:id="colStatus" prefWidth="120" text="Trạng thái" />
+                    <TableColumn fx:id="colSerial" prefWidth="120" text="Số Serial" />
+                    <TableColumn fx:id="colNotes" prefWidth="120" text="Ghi chú" />
+                    <TableColumn fx:id="colDescription" prefWidth="250" text="Mô tả" />
+                    <TableColumn fx:id="colImage" prefWidth="150" text="Hình ảnh" />
+                    <TableColumn fx:id="colActions" prefWidth="160" text="Hành động" />
+                </columns>
+                <HBox.margin>
+                    <Insets top="10.0" />
+                </HBox.margin>
+            </TableView>
+        </HBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" spacing="10.0" style="-fx-padding: 10; -fx-background-color: #ffffff;" stylesheets="@../styles/manageEquipment.css">
+            <children>
+                <Label text="Rows per page:" />
+                <ComboBox fx:id="rowsPerPageComboBox" onAction="#handleRowsPerPageChange" prefWidth="80.0" style="-fx-background-color: #ffffff; -fx-border-radius: 5px; -fx-padding: 5px;" />
+                <Label fx:id="pageInfoLabel" text="1-4 of 4" />
+                <Button fx:id="prevPageButton" onAction="#handlePreviousPage" style="-fx-background-color: #ffffff; -fx-border-radius: 5px; -fx-padding: 5px;" text="&lt;" />
+                <Button fx:id="nextPageButton" onAction="#handleNextPage" style="-fx-background-color: #ffffff; -fx-border-radius: 5px; -fx-padding: 5px;" text="&gt;" />
+            </children>
+            <BorderPane.margin>
+                <Insets />
+            </BorderPane.margin>
+        </HBox>
+    </bottom>
+
+</BorderPane>

@@ -3,7 +3,7 @@ package com.utc2.facilityui.controller.room;
 import com.utc2.facilityui.controller.booking.AddBookingController;
 import com.utc2.facilityui.model.Room;
 // Đảm bảo bạn có ReportRoomController và nó được import đúng nếu được sử dụng
-// import com.utc2.facilityui.controller.room.ReportRoomController;
+// import com.utc2.facilityui.controller.room.ReportRoomController; // Tên đúng là RequestMaintenanceController
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -295,46 +295,51 @@ public class InfoRoomController {
         }
     }
 
+    // ----- PHƯƠNG THỨC showReportRooomDialog ĐƯỢC CẬP NHẬT -----
     private void showReportRooomDialog() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/utc2/facilityui/form/reportRoom.fxml"));
-            AnchorPane reportPane = loader.load();
-            Scene scene = new Scene(reportPane);
-            Stage stage = new Stage();
-            stage.setTitle("Report Room");
-            stage.setScene(scene);
-            Image icon = new Image(getClass().getResourceAsStream("/com/utc2/facilityui/images/logo-icon-UTC2.png"));
-            stage.getIcons().add(icon);
-            stage.initModality(Modality.APPLICATION_MODAL);
+            // Đường dẫn FXML đến file requestMaintenance.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/utc2/facilityui/form/requestMaintenance.fxml")); //
+            AnchorPane reportPane = loader.load(); // Tải FXML
 
-            com.utc2.facilityui.controller.room.ReportRoomController controller = loader.getController();
+            RequestMaintenanceController controller = loader.getController(); // Lấy controller của dialog
 
             if (controller != null) {
-                if (this.currentRoomData != null) {
-                    if (controller.getName() != null) {
-                        controller.getName().setText(this.currentRoomData.getName());
-                    }
-                } else {
-                    if (controller.getName() != null) {
-                        controller.getName().setText("N/A");
-                    }
-                }
-                if (controller.getBntCancel() != null) {
-                    controller.getBntCancel().setOnAction(e -> stage.close());
-                }
-                if (controller.getBntAdd() != null) {
-                    controller.getBntAdd().setOnAction(e -> {
-                        controller.handleAdd();
-                        stage.close();
-                    });
-                }
+                // Truyền dữ liệu phòng hiện tại (currentRoomData) cho RequestMaintenanceController.
+                // Phương thức setRoomData trong RequestMaintenanceController sẽ đảm nhiệm việc
+                // hiển thị tên phòng và điền dữ liệu vào ComboBox.
+                controller.setRoomData(this.currentRoomData);
+
+                // RequestMaintenanceController nên tự xử lý sự kiện cho các nút của nó
+                // (ví dụ: trong phương thức initialize() hoặc qua FXML onAction).
+                // Vì vậy, không cần cài đặt sự kiện cho bntAdd, bntCancel từ đây.
+
             } else {
-                System.err.println("ReportRoomController không được tải từ FXML!");
+                System.err.println("RequestMaintenanceController không được tải từ FXML!");
             }
-            stage.showAndWait();
+
+            // Cài đặt và hiển thị Stage (cửa sổ dialog)
+            Scene scene = new Scene(reportPane);
+            Stage stage = new Stage();
+            stage.setTitle("Báo cáo sự cố phòng"); // Đặt tiêu đề cửa sổ
+            stage.setScene(scene);
+
+            try { // Thử tải icon cho cửa sổ
+                Image icon = new Image(getClass().getResourceAsStream("/com/utc2/facilityui/images/logo-icon-UTC2.png"));
+                stage.getIcons().add(icon);
+            } catch (Exception e) {
+                System.err.println("Không thể load icon cho cửa sổ báo cáo: " + e.getMessage());
+            }
+
+            stage.initModality(Modality.APPLICATION_MODAL); // Đảm bảo dialog này phải được xử lý trước
+            stage.setResizable(false); // (Tùy chọn) không cho phép thay đổi kích thước
+            stage.showAndWait(); // Hiển thị và đợi cho đến khi dialog được đóng
+
         } catch (IOException e) {
+            System.err.println("Lỗi I/O khi tải form báo cáo sự cố: " + e.getMessage());
             e.printStackTrace();
         } catch (Exception e) {
+            // Bắt các lỗi không mong muốn khác
             System.err.println("Lỗi không mong muốn trong showReportRooomDialog: " + e.getMessage());
             e.printStackTrace();
         }

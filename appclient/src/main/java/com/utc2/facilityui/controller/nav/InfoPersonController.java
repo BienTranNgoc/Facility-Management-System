@@ -291,6 +291,7 @@ public class InfoPersonController implements Initializable {
                     break;
                 case "TECHNICIAN": // Technician có thể có quyền hạn chế hơn
                     ls.add(new ButtonNav("Phòng", "/com/utc2/facilityui/images/medal.png")); // Để xem thông tin phòng/thiết bị được giao
+                    ls.add(new ButtonNav("Bảo trì","/com/utc2/facilityui/images/icon_maitenance.png"));
                     ls.add(new ButtonNav("Đặt phòng của tôi", "/com/utc2/facilityui/images/calendar.png")); // Nếu họ cần đặt thiết bị/phòng cho công việc
                     ls.add(new ButtonNav("Thông báo", "/com/utc2/facilityui/images/notificationWhite.png"));
                     ls.add(new ButtonNav("Đặt lại mật khẩu", "/com/utc2/facilityui/images/password.png"));
