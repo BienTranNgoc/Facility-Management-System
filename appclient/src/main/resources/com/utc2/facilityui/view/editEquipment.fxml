@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.utc2.facilityui.controller.equipment.EditEquipmentController"
+      alignment="TOP_CENTER"
+      spacing="25"
+      stylesheets="@../styles/editequipment.css"
+      styleClass="root-container"
+      prefWidth="500" prefHeight="650">
+
+    <Label text="Sửa thông tin thiết bị">
+        <font>
+            <Font name="Arial Bold" size="32.0" />
+        </font>
+        <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+                <stops>
+                    <Stop color="#1976d2" offset="0.0" />
+                    <Stop color="#00bcd4" offset="1.0" />
+                </stops>
+            </LinearGradient>
+        </textFill>
+    </Label>
+
+    <GridPane hgap="15" vgap="15" styleClass="form-grid">
+        <columnConstraints>
+            <ColumnConstraints minWidth="140" halignment="RIGHT" />
+            <ColumnConstraints minWidth="300" />
+        </columnConstraints>
+
+        <Label text="Tên thiết bị:" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="form-label" />
+        <TextField fx:id="txtTypeName" promptText="Loại thiết bị" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="form-input"/>
+
+        <Label text="Model thiết bị:" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="form-label" />
+        <TextField fx:id="txtModelName" promptText="Model thiết bị" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="form-input"/>
+
+        <Label text="Phòng mặc định:" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="form-label" />
+        <TextField fx:id="txtDefaultRoomName" promptText="Phòng mặc định" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="form-input"/>
+
+        <Label text="Trạng thái:" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="form-label"/>
+        <ComboBox fx:id="cmbStatus" promptText="Trạng thái" GridPane.rowIndex="3" GridPane.columnIndex="1" styleClass="form-input"/>
+
+        <Label text="Serial number:" GridPane.rowIndex="4" GridPane.columnIndex="0" styleClass="form-label" />
+        <TextField fx:id="txtSerial" promptText="Serial number" GridPane.rowIndex="4" GridPane.columnIndex="1" styleClass="form-input"/>
+
+        <Label text="Ghi chú:" GridPane.rowIndex="5" GridPane.columnIndex="0" styleClass="form-label" />
+        <TextField fx:id="txtNotes" promptText="Ghi chú"  GridPane.rowIndex="5" GridPane.columnIndex="1" styleClass="form-input"/>
+
+        <Label text="Mô tả thiết bị:" GridPane.rowIndex="6" GridPane.columnIndex="0" styleClass="form-label" />
+        <TextField fx:id="txtDescription" promptText="Mô tả thiết bị" GridPane.rowIndex="6" GridPane.columnIndex="1" styleClass="form-input"/>
+
+        <Label text="Link ảnh mô hình:" GridPane.rowIndex="7" GridPane.columnIndex="0" styleClass="form-label" />
+        <TextField fx:id="txtImgModel" promptText="Link ảnh mô hình" GridPane.rowIndex="7" GridPane.columnIndex="1" styleClass="form-input"/>
+    </GridPane>
+
+    <HBox spacing="20" alignment="CENTER_RIGHT" styleClass="button-container">
+        <Button text="Lưu" onAction="#handleSave" styleClass="btn-save" />
+        <Button text="Hủy" onAction="#handleCancel" styleClass="btn-cancel" />
+    </HBox>
+
+</VBox>

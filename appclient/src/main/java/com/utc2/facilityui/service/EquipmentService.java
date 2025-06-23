@@ -1,6 +1,8 @@
 // File: src/main/java/com/utc2/facilityui/service/EquipmentService.java
 package com.utc2.facilityui.service;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
@@ -8,16 +10,27 @@ import com.google.gson.reflect.TypeToken;
 import com.utc2.facilityui.auth.TokenStorage;
 import com.utc2.facilityui.model.Equipment;   // Model Equipment đã tạo/sửa
 
+import com.utc2.facilityui.model.EquipmentModel;
+import com.utc2.facilityui.model.Room;
 import com.utc2.facilityui.response.ApiResponse;
 import okhttp3.*; // Import các lớp OkHttp
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.lang.reflect.Type;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.sql.*;
+import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class EquipmentService {
-//
+    //
     private final OkHttpClient client;
     private final Gson gson;
     // !!! THAY ĐỔI BASE_URL NẾU API CỦA BẠN CHẠY Ở ĐỊA CHỈ KHÁC !!!
@@ -236,5 +249,292 @@ public class EquipmentService {
         }
         return gson.fromJson(jsonData, typeOfT);
     }
+    /**
+     * Cập nhật thông tin thiết bị qua API.
+     * Endpoint: PUT /equipments/{id}
+     * @param equipment Thiết bị cần cập nhật.
+     * @return true nếu thành công, false nếu thất bại.
+     * @throws IOException nếu lỗi mạng hoặc server.
+     */
+    public boolean updateEquipment(Equipment equipment) throws IOException {
+        if (equipment == null || equipment.getId() == null || equipment.getId().isEmpty()) {
+            throw new IllegalArgumentException("Thiết bị không hợp lệ hoặc chưa có ID.");
+        }
+
+        String url = BASE_URL + "/equipments/" + equipment.getId(); // Giả định có id
+
+        String json = gson.toJson(equipment);
+        RequestBody body = RequestBody.create(json, MediaType.parse("application/json"));
+
+        Request request = new Request.Builder()
+                .url(url)
+                .put(body)
+                .header("Authorization", "Bearer " + TokenStorage.getToken())
+                .header("Content-Type", "application/json")
+                .build();
+
+        try (Response response = client.newCall(request).execute()) {
+            if (!response.isSuccessful()) {
+                String error = response.body() != null ? response.body().string() : "N/A";
+                throw new IOException("Lỗi cập nhật thiết bị: " + response.code() + ", " + error);
+            }
+            return true;
+        }
+    }
+
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/facility";
+    private static final String DB_USER = "root";
+    private static final String DB_PASSWORD = "Tranbien2809@";
+
+    public boolean updateModelNameByEquipmentId(String equipmentId, String newModelName) {
+        String modelId = null;
+
+        // 🪵 Lấy modelId trước để debug
+        String selectSql = "SELECT model_id FROM equipment_item WHERE id = ?";
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+             PreparedStatement selectStmt = conn.prepareStatement(selectSql)) {
+            selectStmt.setString(1, equipmentId);
+            ResultSet rs = selectStmt.executeQuery();
+            if (rs.next()) {
+                modelId = rs.getString("model_id");
+                System.out.println("✅ model_id from equipment_item: " + modelId);
+            } else {
+                System.out.println("❌ Không tìm thấy thiết bị với id = " + equipmentId);
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        String updateSql = "UPDATE equipment_models SET name = ? WHERE id = ?";
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+             PreparedStatement updateStmt = conn.prepareStatement(updateSql)) {
+            updateStmt.setString(1, newModelName);
+            updateStmt.setString(2, modelId);
+            int rows = updateStmt.executeUpdate();
+            System.out.println("🔧 Update model name rows affected: " + rows);
+            return rows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean updateTypeNameByEquipmentId(String equipmentId, String newTypeName) {
+        String sql = """
+        UPDATE equipment_type
+        SET name = ?
+        WHERE id = (
+            SELECT type_id FROM equipment_models
+            WHERE id = (
+                SELECT model_id FROM equipment_item WHERE id = ?
+            )
+        )
+    """;
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, newTypeName);
+            stmt.setString(2, equipmentId);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean clearDefaultRoomByEquipmentId(String equipmentId) {
+        String sql = "UPDATE equipment_item SET default_room_id = NULL WHERE id = ?";
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+                 PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+                stmt.setString(1, equipmentId);
+
+                int rowsUpdated = stmt.executeUpdate();
+                System.out.println("🔧 Rows updated in equipment_item (default_room_id): " + rowsUpdated);
+                return rowsUpdated > 0;
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            System.err.println("❌ Lỗi khi xóa default_room_id: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean updateDefaultRoomByEquipmentId(String equipmentId, String newRoomName) {
+        String sql = """
+        UPDATE equipment_item 
+        SET default_room_id = (
+            SELECT id FROM room WHERE name = ?
+        ) 
+        WHERE id = ?
+    """;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+                 PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+                stmt.setString(1, newRoomName);
+                stmt.setString(2, equipmentId);
+
+                int rowsUpdated = stmt.executeUpdate();
+                System.out.println("🔄 Updated default_room_id rows: " + rowsUpdated);
+                return rowsUpdated > 0;
+            }
+
+        } catch (ClassNotFoundException | SQLException e) {
+            System.err.println("❌ Lỗi khi cập nhật default_room_id: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean updateSerialNumberByEquipmentId(String equipmentId, String newSerialNumber) {
+        String sql = "UPDATE equipment_item SET serial_number = ? WHERE id = ?";
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, newSerialNumber);
+            stmt.setString(2, equipmentId);
+            int rows = stmt.executeUpdate();
+            return rows > 0;
+
+        } catch (SQLException e) {
+            System.err.println("❌ Lỗi cập nhật serial_number: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean updateImgUrlByEquipmentId(String equipmentId, String newImgUrl) {
+        String sql = "UPDATE equipment_models SET image_url = ? WHERE id = (" +
+                "SELECT model_id FROM equipment_item WHERE id = ?)";
+
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, newImgUrl);
+            stmt.setString(2, equipmentId);
+
+            int rows = stmt.executeUpdate();
+            return rows > 0;
+        } catch (SQLException e) {
+            System.err.println("❌ Lỗi khi cập nhật img_url: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean createEquipment(Equipment equipment) throws IOException {
+        String apiUrl = BASE_URL + "/equipments";
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        String json = mapper.writeValueAsString(equipment);
+        System.out.println("📦 JSON gửi lên API: " + json);
+
+        HttpURLConnection conn = (HttpURLConnection) new URL(apiUrl).openConnection();
+        conn.setRequestMethod("POST");
+        conn.setRequestProperty("Content-Type", "application/json");
+
+        // ✅ Thêm Authorization header
+        String token = TokenStorage.getToken(); // Bạn cần triển khai class SessionManager để lưu token sau khi đăng nhập
+        if (token != null && !token.isEmpty()) {
+            conn.setRequestProperty("Authorization", "Bearer " + token);
+            System.out.println("🔑 Token được gửi: Bearer " + token);
+        } else {
+            System.out.println("⚠️ Không tìm thấy token! Có thể bạn chưa đăng nhập hoặc chưa lưu token.");
+        }
+
+        conn.setDoOutput(true);
+
+        try (OutputStream os = conn.getOutputStream()) {
+            os.write(json.getBytes(StandardCharsets.UTF_8));
+        }
+
+        int responseCode = conn.getResponseCode();
+        String responseMessage = conn.getResponseMessage();
+        System.out.println("📥 Mã phản hồi: " + responseCode + " - " + responseMessage);
+
+        if (responseCode != 200 && responseCode != 201) {
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getErrorStream()))) {
+                System.out.println("📥 Lỗi phản hồi từ server:");
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    System.out.println(line);
+                }
+            }
+        }
+
+        return responseCode == 200 || responseCode == 201;
+    }
+
+    public List<EquipmentModel> getAllModels() {
+        List<EquipmentModel> models = new ArrayList<>();
+
+        String sql = "SELECT id, name FROM equipment_models"; // sửa lại tên bảng + cột
+
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                EquipmentModel model = new EquipmentModel();
+                model.setModelId(rs.getString("id"));
+                model.setModelName(rs.getString("name"));
+                models.add(model);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return models;
+    }
+
+    public List<Room> getAllRooms() {
+        List<Room> rooms = new ArrayList<>();
+
+        String sql = "SELECT id, name FROM room";  // thay 'rooms' và các cột theo DB bạn
+
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                Room room = new Room();
+                room.setId(rs.getString("id"));
+                room.setName(rs.getString("name"));
+                rooms.add(room);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return rooms;
+    }
+
+    public boolean deleteEquipmentByIdAndSerial(String id, String serialNumber) {
+        String sql = "DELETE FROM equipment_item WHERE id = ? AND serial_number = ?";
+
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, id);
+            stmt.setString(2, serialNumber);
+
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
 }

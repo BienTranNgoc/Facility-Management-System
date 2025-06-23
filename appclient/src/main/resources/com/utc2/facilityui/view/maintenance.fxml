@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.utc2.facilityui.controller.MaintenanceController">
+    <top>
+        <VBox alignment="TOP_LEFT" prefHeight="179.0" prefWidth="835.0" spacing="10.0" style="-fx-background-color: #f9f9f9; -fx-padding: 10;">
+            <children>
+                <HBox alignment="CENTER_LEFT">
+                    <children>
+                        <Label text="Công việc bảo trì">
+                            <font>
+                                <Font name="Arial Bold" size="30.0" />
+                            </font>
+                            <textFill>
+                                <LinearGradient endX="1.0" endY="1.0">
+                                    <stops>
+                                        <Stop color="#1976d2" offset="0.0" />
+                                        <Stop color="#00bcd4" offset="1.0" />
+                                    </stops>
+                                </LinearGradient>
+                            </textFill>
+                        </Label>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="36.0" prefWidth="502.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Button prefHeight="34.0" prefWidth="117.0" style="-fx-background-color: #1976d2; -fx-background-radius: 5px; -fx-text-fill: white;" text="XUẤT EXCEL" translateX="-80.0">
+                                    <font>
+                                        <Font name="System Bold" size="12.0" />
+                                    </font>
+                                    <graphic>
+                                        <HBox prefHeight="20.0" prefWidth="26.0">
+                                            <children>
+                                                <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../images/download.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </children>
+                                        </HBox>
+                                    </graphic>
+                                </Button>
+                            </children>
+                        </HBox>
+                    </children>
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT" prefHeight="63.0" prefWidth="815.0" spacing="10.0" stylesheets="@../styles/mainUI.css" translateY="30.0">
+               <children>
+                  <AnchorPane prefHeight="53.0" prefWidth="814.0" stylesheets="@../styles/mainUI.css">
+                     <children>
+                        <CheckBox fx:id="statusReported" layoutX="14.0" layoutY="32.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="94.0" text="REPORTED">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </CheckBox>
+                        <Label layoutX="7.0" prefHeight="26.0" prefWidth="124.0" text="Lọc theo trạng thái: ">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <CheckBox fx:id="statusCannot_Repair" layoutX="422.0" layoutY="32.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="136.0" text="CANNOT_REPAIR">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox fx:id="statusCompleted" layoutX="284.0" layoutY="32.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="123.0" text="COMPLETED">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox fx:id="statusIn_Progress" layoutX="141.0" layoutY="32.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="115.0" text="IN_PROGRESS">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox layoutX="586.0" layoutY="32.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="115.0" text="CANCELLED">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </CheckBox>
+                     </children>
+                  </AnchorPane>
+               </children>
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="white-bg" />
+               </styleClass>
+                </HBox>
+            </children>
+        </VBox>
+    </top>
+    <center>
+        <TableView fx:id="bookingsTable" prefHeight="385.0" prefWidth="835.0" stylesheets="@../styles/manageBooking.css">
+            <columns>
+                <TableColumn fx:id="roomName" prefWidth="107.0" text="Phòng" />
+                <TableColumn fx:id="modelName" prefWidth="179.0" text="Thiết bị" />
+                <TableColumn fx:id="description" prefWidth="190.5" text="Mô tả sự cố" />
+                <TableColumn fx:id="status" prefWidth="172.5" text="Trạng thái" />
+                <TableColumn fx:id="reportByUser" prefWidth="124.5" text="Người báo cáo" />
+                <TableColumn fx:id="reportedAt" prefWidth="186.5" text="Thời gian báo cáo" />
+                <TableColumn fx:id="technicianName" prefWidth="100.0" text="KTV được giao" />
+                <TableColumn fx:id="actionColumn" prefWidth="220.0" text="Hành động" />
+            </columns>
+        </TableView>
+    </center>
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" spacing="10.0" style="-fx-padding: 10; -fx-background-color: #ffffff;" stylesheets="@../styles/manageBooking.css">
+            <children>
+                <Label text="Rows per page:" translateX="-50.0" />
+                <ComboBox fx:id="rowsPerPageComboBox" prefHeight="35.0" prefWidth="79.0" style="-fx-background-color: #ffffff; -fx-border-radius: 5px; -fx-padding: 5px;" translateX="-50.0" />
+                <Label fx:id="pageInfoLabel" text="1-4 of 4" translateX="-50.0" />
+                <Button fx:id="prevPageButton" style="-fx-background-color: #ffffff; -fx-border-radius: 5px; -fx-padding: 5px;" text="&lt;" translateX="-50.0" />
+                <Button fx:id="nextPageButton" style="-fx-background-color: #ffffff; -fx-border-radius: 5px; -fx-padding: 5px;" text="&gt;" translateX="-50.0" />
+            </children>
+        </HBox>
+    </bottom>
+    <padding>
+        <Insets left="15.0" />
+    </padding>
+</BorderPane>

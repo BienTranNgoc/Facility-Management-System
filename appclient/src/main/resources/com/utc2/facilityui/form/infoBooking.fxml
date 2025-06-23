@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="513.0" prefWidth="792.0" stylesheets="@../styles/mainUI.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.utc2.facilityui.controller.booking.InfoBookingController">
+   <children>
+      <VBox prefHeight="490.0" prefWidth="803.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="84.0" prefWidth="649.0" style="-fx-background-color: f3d42b;">
+               <children>
+                  <Label prefHeight="83.0" prefWidth="817.0" style="-fx-text-fill: white;" text="Chi tiết sự kiện" translateX="20.0">
+                     <font>
+                        <Font name="System Bold" size="26.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="77.0" prefWidth="649.0">
+               <children>
+                  <Label style="-fx-font-weight: bold;" text="Phòng:" translateX="20.0" translateY="10.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="nameRoom" prefHeight="27.0" prefWidth="675.0" style="-fx-font-weight: old;" text="Phòng:" translateX="25.0" translateY="10.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="77.0" prefWidth="649.0">
+               <children>
+                  <Label prefHeight="27.0" prefWidth="147.0" style="-fx-font-weight: bold;" text="Mục đích mượn:" translateX="20.0" translateY="10.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="purpose" prefHeight="27.0" prefWidth="590.0" text="Phòng:" translateX="25.0" translateY="10.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="77.0" prefWidth="649.0">
+               <children>
+                  <Label style="-fx-font-weight: bold;" text="Thiết bị:" translateX="20.0" translateY="10.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="equipmentDefault" prefHeight="27.0" prefWidth="556.0" text="Phòng:" translateX="25.0" translateY="10.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="77.0" prefWidth="200.0">
+               <children>
+                  <Label style="-fx-font-weight: bold;" text="Ngày mượn:" translateX="20.0" translateY="10.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="dayTime" prefHeight="27.0" prefWidth="556.0" text="Phòng:" translateX="25.0" translateY="10.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="77.0" prefWidth="200.0">
+               <children>
+                  <Label style="-fx-font-weight: bold;" text="Thời gian mượn:" translateX="20.0" translateY="10.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="timeRange" prefHeight="27.0" prefWidth="556.0" text="Phòng:" translateX="25.0" translateY="10.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="77.0" prefWidth="200.0">
+               <children>
+                  <Label style="-fx-font-weight: bold;" text="Người mượn:" translateX="20.0" translateY="10.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="userName" prefHeight="27.0" prefWidth="556.0" text="Phòng:" translateX="25.0" translateY="10.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="77.0" prefWidth="200.0">
+               <children>
+                  <Label style="-fx-font-weight: bold;" text="Ngày tạo:" translateX="20.0" translateY="10.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="createdAt" prefHeight="27.0" prefWidth="556.0" text="Phòng:" translateX="25.0" translateY="10.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="77.0" prefWidth="200.0">
+               <children>
+                  <Label style="-fx-font-weight: bold;" text="Ngày cập nhật:" translateX="20.0" translateY="10.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="updatedAt" prefHeight="27.0" prefWidth="556.0" text="Phòng:" translateX="25.0" translateY="10.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="77.0" prefWidth="200.0">
+               <children>
+                  <Label style="-fx-font-weight: bold;" text="Ghi chú:" translateX="20.0" translateY="10.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="note" prefHeight="27.0" prefWidth="556.0" text="Phòng:" translateX="25.0" translateY="10.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

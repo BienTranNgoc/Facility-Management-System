@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.paint.Stop?>
+
+<VBox alignment="TOP_CENTER" spacing="20" style="-fx-background-color: #f5f7fa;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.utc2.facilityui.controller.equipment.AddEquipmentController">
+    <padding>
+        <Insets bottom="25" left="30" right="30" top="25" />
+    </padding>
+
+    <Text text="Thêm Thiết Bị Mới"
+          style="-fx-font-family: 'Arial'; -fx-font-weight: bold; -fx-font-size: 32px;">
+        <fill>
+            <LinearGradient startX="0" startY="0" endX="1" endY="1" proportional="true">
+                <stops>
+                    <Stop color="#1976d2" offset="0.0" />
+                    <Stop color="#00bcd4" offset="1.0" />
+                </stops>
+            </LinearGradient>
+        </fill>
+    </Text>
+
+    <GridPane hgap="15" style="-fx-background-color: white; -fx-padding: 20; -fx-border-radius: 8; -fx-background-radius: 8; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 4);" vgap="15">
+        <columnConstraints>
+            <ColumnConstraints halignment="RIGHT" minWidth="140" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="280" />
+        </columnConstraints>
+
+        <Label style="-fx-font-weight: semi-bold; -fx-text-fill: #555;" text="Model thiết bị:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <ComboBox fx:id="cmbModel" prefWidth="280" style="-fx-background-radius: 6; -fx-border-radius: 6;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+        <Label style="-fx-font-weight: semi-bold; -fx-text-fill: #555;" text="Serial Number:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="txtSerial" promptText="Nhập serial number" style="-fx-background-radius: 6; -fx-border-radius: 6; -fx-padding: 6 8;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+        <Label style="-fx-font-weight: semi-bold; -fx-text-fill: #555;" text="Phòng mặc định:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <ComboBox fx:id="cmbRoom" prefWidth="280" style="-fx-background-radius: 6; -fx-border-radius: 6;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+        <Label style="-fx-font-weight: semi-bold; -fx-text-fill: #555;" text="Ghi chú:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <TextField fx:id="txtNotes" promptText="Nhập ghi chú" style="-fx-background-radius: 6; -fx-border-radius: 6; -fx-padding: 6 8;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+        </rowConstraints>
+    </GridPane>
+
+    <HBox alignment="CENTER_RIGHT" spacing="15">
+        <Button onAction="#handleSave" style="             -fx-background-color: #4CAF50;             -fx-text-fill: white;             -fx-font-weight: bold;             -fx-padding: 8 25;             -fx-background-radius: 6;             -fx-cursor: hand;         " text="Lưu">
+            <style>
+                .button:hover {
+                -fx-background-color: #45a049;
+                }
+            </style>
+        </Button>
+        <Button onAction="#handleCancel" style="             -fx-background-color: #f44336;             -fx-text-fill: white;             -fx-font-weight: bold;             -fx-padding: 8 25;             -fx-background-radius: 6;             -fx-cursor: hand;         " text="Hủy">
+            <style>
+                .button:hover {
+                -fx-background-color: #da190b;
+                }
+            </style>
+        </Button>
+    </HBox>
+</VBox>

@@ -1,0 +1,93 @@
+/* Root container: white background, shadow, rounded corners, padding */
+.root-container {
+    -fx-background-color: #ffffff;
+    -fx-padding: 40 40 40 40;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.12), 15, 0, 0, 8);
+    -fx-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Title label */
+.title-label {
+    -fx-font-size: 28px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #34495e;
+    -fx-padding: 0 0 10 0;
+}
+
+/* Labels on form */
+.form-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #2c3e50;
+}
+
+/* TextFields styling */
+.form-input {
+    -fx-background-color: #ecf0f1;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-border-color: transparent;
+    -fx-padding: 8 12 8 12;
+    -fx-font-size: 14px;
+    -fx-text-fill: #2c3e50;
+}
+
+.form-input:focused {
+    -fx-border-color: #2980b9;
+    -fx-background-color: #ffffff;
+}
+
+/* TextArea styling */
+.form-textarea {
+    -fx-background-color: #ecf0f1;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-border-color: transparent;
+    -fx-padding: 10 12 10 12;
+    -fx-font-size: 14px;
+    -fx-text-fill: #2c3e50;
+    -fx-wrap-text: true;
+}
+
+.form-textarea:focused {
+    -fx-border-color: #2980b9;
+    -fx-background-color: #ffffff;
+}
+
+/* Buttons container */
+.button-container {
+    -fx-padding: 20 0 0 0;
+}
+
+/* Save button - xanh tươi, nổi bật */
+.btn-save {
+    -fx-background-color: #27ae60;
+    -fx-text-fill: white;
+    -fx-font-weight: 600;
+    -fx-font-size: 16px;
+    -fx-background-radius: 8;
+    -fx-padding: 10 25 10 25;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow( gaussian , rgba(39,174,96,0.4), 6, 0.0 , 0 , 1);
+}
+
+.btn-save:hover {
+    -fx-background-color: #2ecc71;
+}
+
+/* Cancel button - đỏ nhẹ */
+.btn-cancel {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-weight: 600;
+    -fx-font-size: 16px;
+    -fx-background-radius: 8;
+    -fx-padding: 10 25 10 25;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow( gaussian , rgba(231,76,60,0.4), 6, 0.0 , 0 , 1);
+}
+
+.btn-cancel:hover {
+    -fx-background-color: #c0392b;
+}

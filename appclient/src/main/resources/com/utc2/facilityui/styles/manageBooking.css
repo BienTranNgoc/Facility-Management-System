@@ -1,24 +1,124 @@
+/*#bookingsTable .column-header {*/
+/*    -fx-background-color:#646464;*/
+/*    -fx-font-weight: bold;*/
+/*    -fx-min-height: 30px;*/
+/*    -fx-pref-height: 40px;*/
+/*    -fx-max-height: 50px;*/
+/*}*/
+/*#bookingsTable .column-header .label {*/
+/*    -fx-text-fill: #f3f5f5;*/
+/*}*/
+/*.table-row-cell {*/
+/*    -fx-min-height: 100px;*/
+/*    -fx-pref-height: 100px;*/
+/*}*/
+/*.table-cell {*/
+/*    -fx-alignment: CENTER;*/
+/*}*/
+/*.table-view .scroll-bar:vertical {*/
+/*    -fx-opacity: 0;*/
+/*    -fx-max-width: 0;*/
+/*    -fx-pref-width: 0;*/
+/*    -fx-min-width: 0;*/
+/*}*/
+
+/* Các style khác của bạn */
 #bookingsTable .column-header {
-    -fx-background-color:#646464;
+    -fx-background-color: #646464;
     -fx-font-weight: bold;
     -fx-min-height: 30px;
     -fx-pref-height: 40px;
     -fx-max-height: 50px;
 }
+
 #bookingsTable .column-header .label {
     -fx-text-fill: #f3f5f5;
 }
+
 .table-row-cell {
     -fx-min-height: 100px;
-    -fx-pref-height: 100px;
+    -fx-pref-height: 100px; /* Đảm bảo các ô có đủ chiều cao để thấy rõ căn giữa dọc */
 }
+
 .table-cell {
-    -fx-alignment: CENTER;
+    -fx-alignment: CENTER; /* Căn khối nội dung vào giữa ô (ngang và dọc) */
 }
+
+/* Tùy chọn: Căn giữa các dòng văn bản nếu văn bản trong ô bị xuống dòng */
+.table-cell .text { /* Áp dụng nếu nội dung ô là Text Node */
+    -fx-text-alignment: center;
+}
+/* Hoặc nếu ô dùng Label mặc định: */
+/*
+.table-cell .label {
+    -fx-text-alignment: center;
+}
+*/
+
 .table-view .scroll-bar:vertical {
     -fx-opacity: 0;
     -fx-max-width: 0;
     -fx-pref-width: 0;
     -fx-min-width: 0;
 }
+/* Kiểu chung cho tất cả các "badge" trạng thái */
+.status-badge {
+    -fx-padding: 4px 12px; /* Điều chỉnh padding cho vừa mắt */
+    -fx-background-radius: 15px; /* Bo tròn góc để tạo hình viên thuốc */
+    -fx-font-size: 12px;   /* Cỡ chữ, có thể điều chỉnh */
+    -fx-font-weight: bold; /* Chữ đậm giống trong hình */
+    -fx-text-alignment: center; /* Căn giữa văn bản bên trong Label */
+    -fx-min-width: 90px; /* Đặt chiều rộng tối thiểu để các badge trông đều hơn */
+    -fx-alignment: center; /* Căn Label vào giữa nếu nó không chiếm hết không gian */
+}
 
+/* Kiểu cụ thể cho từng trạng thái */
+.status-confirmed { /* "Đã duyệt" */
+    -fx-background-color: #4CAF50; /* Xanh lá cây */
+    -fx-text-fill: white;
+}
+
+.status-rejected { /* "Bị từ chối" */
+    -fx-background-color: #D32F2F; /* Đỏ đậm hơn một chút */
+    -fx-text-fill: white;
+}
+
+.status-completed { /* "Đã hoàn thành" */
+    -fx-background-color: #E0E0E0; /* Xám rất nhạt */
+    -fx-text-fill: #333333; /* Chữ màu xám đậm/đen */
+    -fx-font-weight: normal; /* Có thể chữ không cần đậm cho trạng thái này */
+}
+
+.status-in-progress { /* "Đang sử dụng" */
+    -fx-background-color: #1976D2; /* Xanh dương đậm hơn */
+    -fx-text-fill: white;
+}
+
+.status-cancelled { /* "Đã hủy" - Giống "Bị từ chối" */
+    -fx-background-color: #D32F2F; /* Đỏ đậm hơn */
+    -fx-text-fill: white;
+}
+
+.status-pending { /* "Chờ duyệt" */
+    -fx-background-color: #EF6C00; /* Cam đậm */
+    -fx-text-fill: white;
+}
+
+.status-default { /* Kiểu mặc định nếu trạng thái không xác định */
+    -fx-background-color: #757575; /* Xám */
+    -fx-text-fill: white;
+}
+
+/* Đảm bảo quy tắc này vẫn tồn tại để căn giữa nội dung trong các ô khác nếu cần */
+/* Nếu bạn đã có quy tắc này cho #bookingsTable .table-cell, nó sẽ áp dụng */
+/* Bạn có thể làm cho nó cụ thể hơn cho cột trạng thái nếu muốn */
+#bookingsTable .table-cell { /* Áp dụng chung cho các ô trong bảng */
+    -fx-alignment: CENTER;
+}
+
+/* Hoặc nếu bạn muốn chỉ cột trạng thái có Label được căn giữa mạnh mẽ hơn: */
+/*
+#bookingsTable .table-column#statusColumn .table-cell {
+    -fx-alignment: CENTER;
+}
+*/

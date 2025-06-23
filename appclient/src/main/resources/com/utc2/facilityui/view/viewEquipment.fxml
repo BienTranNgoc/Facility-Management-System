@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.utc2.facilityui.controller.equipment.ViewEquipmentController"
+            style="-fx-background-color: #f9f9f9;">
+    <children>
+        <VBox alignment="CENTER" spacing="20">
+            <padding>
+                <Insets top="30" right="30" bottom="30" left="30"/>
+            </padding>
+
+            <!-- Tên thiết bị -->
+            <Label fx:id="labelName" text="Tên thiết bị" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+
+            <!-- Ảnh thiết bị (nếu có) -->
+            <ImageView fx:id="imageView" fitHeight="150" fitWidth="200" preserveRatio="true" />
+
+            <!-- GridPane thông tin -->
+            <GridPane hgap="20" vgap="15">
+                <children>
+
+                    <!-- Dòng 1 -->
+                    <Label text="Model:" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-font-weight: bold;" />
+                    <Label fx:id="labelModel" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+                    <!-- Dòng 2 -->
+                    <Label text="Phòng mặc định:" GridPane.rowIndex="1" GridPane.columnIndex="0" style="-fx-font-weight: bold;" />
+                    <Label fx:id="labelRoom" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+                    <!-- Dòng 3 -->
+                    <Label text="Trạng thái:" GridPane.rowIndex="2" GridPane.columnIndex="0" style="-fx-font-weight: bold;" />
+                    <Label fx:id="labelStatus" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+                    <!-- Dòng 4 -->
+                    <Label text="Serial:" GridPane.rowIndex="3" GridPane.columnIndex="0" style="-fx-font-weight: bold;" />
+                    <Label fx:id="labelSerial" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+
+                    <!-- Dòng 5 -->
+                    <Label text="Ghi chú:" GridPane.rowIndex="4" GridPane.columnIndex="0" style="-fx-font-weight: bold;" />
+                    <Label fx:id="labelNotes" wrapText="true" GridPane.rowIndex="4" GridPane.columnIndex="1" />
+
+                    <!-- Dòng 6 -->
+                    <Label text="Mô tả:" GridPane.rowIndex="5" GridPane.columnIndex="0" style="-fx-font-weight: bold;" />
+                    <Label fx:id="labelDescription" wrapText="true" GridPane.rowIndex="5" GridPane.columnIndex="1" />
+
+                </children>
+            </GridPane>
+        </VBox>
+    </children>
+</AnchorPane>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="572.0" prefWidth="600.0" style="-fx-background-color: #f4f6f8;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.utc2.facilityui.controller.AddUserController">
+    <children>
+        <VBox layoutX="27.0" layoutY="14.0" prefHeight="607.0" prefWidth="546.0" spacing="12.0" style="-fx-background-color: white; -fx-background-radius: 10px; -fx-padding: 20px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 4);" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="14.0">
+            <children>
+                <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1976d2;" text="➕ Thêm Tài khoản mới" />
+
+                <VBox spacing="4.0">
+                    <Label style="-fx-font-weight: bold;" text="Mã số (*)">
+                        <font>
+                            <Font size="14.0" />
+                        </font></Label>
+                    <TextField fx:id="userIdTextField" minHeight="40.0" promptText="Ví dụ: GV001, SV001" />
+                </VBox>
+
+                <VBox spacing="4.0">
+                    <Label style="-fx-font-weight: bold;" text="Tên tài khoản (*)">
+                        <font>
+                            <Font size="14.0" />
+                        </font></Label>
+                    <TextField fx:id="userNameTextField" minHeight="40.0" promptText="Tên đăng nhập duy nhất" />
+                </VBox>
+
+                <VBox spacing="4.0">
+                    <Label style="-fx-font-weight: bold;" text="Họ tên">
+                        <font>
+                            <Font size="14.0" />
+                        </font></Label>
+                    <TextField fx:id="fullNameTextField" minHeight="40.0" promptText="Họ và tên đầy đủ" />
+                </VBox>
+
+                <VBox spacing="4.0">
+                    <Label style="-fx-font-weight: bold;" text="Email (*)">
+                        <font>
+                            <Font size="14.0" />
+                        </font>
+                    </Label>
+                    <TextField fx:id="emailTextField" minHeight="40.0" promptText="Địa chỉ email hợp lệ" />
+                </VBox>
+
+                <VBox spacing="4.0">
+                    <Label style="-fx-font-weight: bold;" text="Vai trò (*)">
+                        <font>
+                            <Font size="14.0" />
+                        </font></Label>
+                    <ComboBox fx:id="roleNameComboBox" prefHeight="40.0" prefWidth="506.0" stylesheets="@../styles/mainUI.css">
+                        <styleClass>
+                            <String fx:value="shadow" />
+                            <String fx:value="white-bg" />
+                        </styleClass>
+                    </ComboBox>
+                </VBox>
+
+                <HBox alignment="CENTER_RIGHT" spacing="10.0" VBox.vgrow="ALWAYS"> <Button fx:id="cancelButton" onAction="#handleCancelAction" prefHeight="38.0" prefWidth="80.0" style="-fx-text-fill: #333; -fx-font-weight: bold; -fx-border-color: #ccc; -fx-border-radius: 5;" styleClass="bnt-cancel" stylesheets="@../styles/mainUI.css" text="Hủy bỏ" />
+                    <Button fx:id="addButton" onAction="#handleAddUserAction" prefHeight="38.0" prefWidth="120.0" style="-fx-background-color: #1976d2; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" text="Thêm tài khoản" />
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

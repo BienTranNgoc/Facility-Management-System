@@ -1,0 +1,133 @@
+/* === CSS Đầy Đủ Đã Điều Chỉnh === */
+
+/* Áp dụng chung cho TableView */
+#facilityTable { /* Sử dụng ID selector nếu TableView có fx:id="facilityTable" */
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #DEE2E6;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 10, 0, 0, 3);
+    -fx-font-family: "System", sans-serif;
+    -fx-font-size: 13.5px;
+    -fx-background-insets: 0;
+    -fx-padding: 1px;
+}
+
+/* --- HEADER CỘT (Dựa trên CSS bạn cung cấp và tinh chỉnh) --- */
+#facilityTable .column-header-background {
+    -fx-background-color: #646464; /* Màu nền tối từ CSS của bạn */
+    -fx-border-color: transparent;
+    -fx-background-radius: 5px 5px 0 0; /* Bo góc trên */
+    -fx-background-insets: 0;
+}
+
+#facilityTable .column-header-background .label {
+    -fx-text-fill: #f3f5f5;   /* Chữ màu trắng/sáng từ CSS của bạn */
+    -fx-font-weight: bold;    /* Chữ đậm từ CSS của bạn */
+    -fx-padding: 8px 10px;     /* Padding cho text trong header (có thể điều chỉnh) */
+    -fx-alignment: CENTER;      /* Căn giữa text của header */
+}
+
+#facilityTable .column-header {
+    -fx-background-color: transparent; /* Để màu của column-header-background hiển thị qua */
+    -fx-border-color: transparent #888888 transparent transparent; /* Đường kẻ dọc phải cho header (màu tối hơn một chút) */
+    -fx-border-width: 0 1px 0 0;
+    -fx-padding: 0;               /* Reset padding của .column-header */
+    -fx-alignment: CENTER;        /* Căn giữa toàn bộ nội dung của column-header */
+    /* Giữ lại min/pref/max height từ CSS của bạn cho header nếu muốn kiểm soát chặt chẽ chiều cao header */
+    -fx-min-height: 30px;
+    -fx-pref-height: 40px;
+    -fx-max-height: 50px;
+}
+
+#facilityTable .column-header.last-visible {
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+}
+
+#facilityTable .filler {
+    -fx-background-color: #646464; /* Cùng màu nền header */
+    -fx-border-color: transparent;
+    -fx-background-radius: 0 5px 0 0;
+}
+
+/* --- DÒNG VÀ Ô DỮ LIỆU (Điều chỉnh kích thước ở đây) --- */
+#facilityTable .table-row-cell {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 0px;
+    -fx-border-color: transparent transparent #E0E0E0 transparent; /* Kẻ ngang dưới mỗi dòng */
+    -fx-border-width: 0 0 1px 0;
+    /* Điều chỉnh chiều cao dòng cho phù hợp với nội dung và font chữ */
+    /* Giá trị 100px từ CSS của bạn khá lớn, có thể làm các dòng trông thưa.
+       Hãy thử giá trị nhỏ hơn, ví dụ 35px - 45px, tùy thuộc vào font và padding bạn muốn. */
+    -fx-min-height: 40px;    /* Chiều cao tối thiểu cho dòng */
+    -fx-pref-height: 40px;   /* Chiều cao ưu tiên */
+    /* -fx-max-height: 40px; */ /* Có thể đặt max-height nếu muốn cố định hoàn toàn */
+    -fx-text-fill: #333333;   /* Màu chữ trong dòng */
+    -fx-transition: background-color 0.1s ease-in-out;
+}
+
+#facilityTable .table-row-cell:odd {
+    -fx-background-color: #F9F9F9; /* Nền dòng lẻ (zebra) */
+}
+
+#facilityTable .table-row-cell:hover {
+    -fx-background-color: #F0F8FF; /* Nền khi di chuột qua (AliceBlue) */
+}
+
+#facilityTable .table-row-cell:selected {
+    -fx-background-color: #0078D7;    /* Nền khi dòng được chọn */
+    -fx-border-bottom-color: #005A9E;
+}
+
+/* Các ô dữ liệu */
+#facilityTable .table-cell {
+    -fx-padding: 8px 10px;      /* Padding trong ô (QUAN TRỌNG cho không gian hiển thị) */
+    -fx-alignment: CENTER;      /* Căn giữa nội dung trong ô (từ CSS của bạn) */
+    -fx-text-alignment: CENTER; /* Căn giữa khối text (nếu text có nhiều dòng) */
+    -fx-text-fill: inherit;
+    -fx-border-color: transparent #EDEDED transparent transparent; /* Kẻ dọc phải cho ô (màu rất nhạt) */
+    -fx-border-width: 0 1px 0 0;
+    -fx-wrap-text: true; /* Cho phép text xuống dòng nếu quá dài và cột không đủ rộng */
+}
+
+#facilityTable .table-row-cell .table-cell.last-visible {
+    -fx-border-right-width: 0; /* Bỏ đường kẻ dọc cho ô cuối */
+}
+
+#facilityTable .table-row-cell:selected .table-cell {
+    -fx-text-fill: white;
+}
+
+/* --- PLACEHOLDER VÀ SCROLLBAR (Giữ lại hoặc tùy chỉnh) --- */
+#facilityTable .placeholder .label {
+    -fx-text-fill: #6B7280;
+    -fx-font-size: 14px;
+    -fx-font-style: italic;
+}
+
+#facilityTable .scroll-bar:horizontal,
+#facilityTable .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 2px;
+}
+
+#facilityTable .scroll-bar .thumb {
+    -fx-background-color: #D1D5DB;
+    -fx-background-insets: 0;
+    -fx-background-radius: 4px;
+}
+
+#facilityTable .scroll-bar .thumb:hover {
+    -fx-background-color: #9CA3AF;
+}
+
+#facilityTable .scroll-bar .increment-button,
+#facilityTable .scroll-bar .decrement-button,
+#facilityTable .scroll-bar .increment-arrow,
+#facilityTable .scroll-bar .decrement-arrow {
+    -fx-padding: 0;
+    -fx-background-color: transparent;
+    -fx-shape: "";
+}

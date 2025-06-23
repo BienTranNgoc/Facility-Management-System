@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -92,7 +93,7 @@
         </VBox>
     </top>
     <center>
-        <TableView fx:id="bookingsTable" prefHeight="400.0" prefWidth="970.0" stylesheets="@../styles/manageBooking.css">
+        <TableView fx:id="bookingsTable" prefHeight="400.0" prefWidth="970.0">
             <columns>
                 <TableColumn fx:id="userIdColumn" prefWidth="150.0" text="Người đặt" />
                 <TableColumn fx:id="roomIdColumn" prefWidth="120.0" text="Phòng" />
@@ -106,6 +107,9 @@
                 <TableColumn fx:id="noteColumn" prefWidth="180.0" text="Ghi chú" />
                 <TableColumn fx:id="actionColumn" prefWidth="220.0" text="Hành động" />
             </columns>
+         <stylesheets>
+            <URL value="@../styles/manageBooking.css" />
+         </stylesheets>
         </TableView>
     </center>
     <bottom>
