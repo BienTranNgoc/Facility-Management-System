@@ -40,6 +40,7 @@ public class SidebarMenuController implements Initializable {
     @FXML private Button approvalRequestsButton;
     @FXML private Label approvalCountLabel;
     @FXML private Button cancellationRequestsButton;
+    @FXML private Button accountManagementButton;
     // @FXML private Button reportButton; // Bỏ comment nếu bạn có nút này
     @FXML private Button manageDeviceButton; // Thêm nếu bạn có nút này
     @FXML private Button resetPasswordButton;
@@ -273,7 +274,7 @@ public class SidebarMenuController implements Initializable {
     @FXML private void handleCancellationRequests(ActionEvent event) { System.out.println("Overdue Requests clicked."); loadView("/com/utc2/facilityui/view/overdueRequest.fxml"); }
     @FXML private void handleManageDevice(ActionEvent event) { System.out.println("Manage Device clicked."); loadView("/com/utc2/facilityui/view/manageDevice.fxml"); }
     @FXML private void handleResetPassword(ActionEvent event) { System.out.println("Reset Password clicked."); loadView("/com/utc2/facilityui/view/resetpassword.fxml"); }
-
+    @FXML private void handleAccountManagement(ActionEvent event) { System.out.println("Account Management clicked."); loadView("/com/utc2/facilityui/view/accountManagement.fxml"); }
     @FXML
     private void handleLogout(ActionEvent event) {
         System.out.println("Logout button clicked.");

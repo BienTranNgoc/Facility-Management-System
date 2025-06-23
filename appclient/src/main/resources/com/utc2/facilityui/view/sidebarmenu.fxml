@@ -73,6 +73,28 @@
                 <Tooltip text="Quản lý đặt phòng" />
             </tooltip>
         </Button>
+      <Button fx:id="accountManagementButton" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleAccountManagement" prefHeight="64.0" prefWidth="318.0" style="-fx-background-color: #00275e;" styleClass="sidebar-button" text="Quản lý tài khoản" textFill="WHITE">
+         <graphic>
+            <HBox alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/client.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <padding>
+            <Insets right="80.0" />
+         </padding>
+         <tooltip>
+            <Tooltip text="Quản lý đặt phòng" />
+         </tooltip>
+      </Button>
         <Button fx:id="manageDeviceButton" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleManageDevice" prefHeight="64.0" prefWidth="318.0" style="-fx-background-color: #00275e;" styleClass="sidebar-button" text="Quản lý thiết bị" textFill="WHITE">
             <graphic>
                 <HBox alignment="CENTER">
