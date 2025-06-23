@@ -192,7 +192,7 @@ public class ButtonNavController {
             case "thông báo" -> "myNotification.fxml"; // Trong /com/utc2/facilityui/view/
             case "đặt phòng của tôi" -> "myBookings.fxml"; // Trong /com/utc2/facilityui/view/
             case "đặt lại mật khẩu" -> "resetpassword.fxml";
-            case "quản lý thiết bị" -> "manageDevice.fxml"; // Trong /com/utc2/facilityui/view/
+            case "quản lý thiết bị" -> "manageEquipment.fxml"; // Trong /com/utc2/facilityui/view/
             case "yêu cầu phê duyệt"-> "approvalrequests.fxml"; // Trong /com/utc2/facilityui/view/
             case "yêu cầu quá hạn"-> "overdueRequest.fxml"; // Trong /com/utc2/facilityui/view/
             case "quản lý cơ sở vật chất" -> "manageFacility.fxml";

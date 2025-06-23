@@ -272,7 +272,7 @@ public class SidebarMenuController implements Initializable {
     @FXML private void handleManageBookings(ActionEvent event) { System.out.println("Manage Bookings clicked."); loadView("/com/utc2/facilityui/view/manageBookings.fxml"); }
     @FXML private void handleApprovalRequests(ActionEvent event) { System.out.println("Approval Requests clicked."); loadView("/com/utc2/facilityui/view/approvalrequests.fxml"); }
     @FXML private void handleCancellationRequests(ActionEvent event) { System.out.println("Overdue Requests clicked."); loadView("/com/utc2/facilityui/view/overdueRequest.fxml"); }
-    @FXML private void handleManageDevice(ActionEvent event) { System.out.println("Manage Device clicked."); loadView("/com/utc2/facilityui/view/manageDevice.fxml"); }
+    @FXML private void handleManageDevice(ActionEvent event) { System.out.println("Manage Equipment clicked."); loadView("/com/utc2/facilityui/view/manageEquipment.fxml"); }
     @FXML private void handleResetPassword(ActionEvent event) { System.out.println("Reset Password clicked."); loadView("/com/utc2/facilityui/view/resetpassword.fxml"); }
     @FXML private void handleAccountManagement(ActionEvent event) { System.out.println("Account Management clicked."); loadView("/com/utc2/facilityui/view/accountManagement.fxml"); }
     @FXML

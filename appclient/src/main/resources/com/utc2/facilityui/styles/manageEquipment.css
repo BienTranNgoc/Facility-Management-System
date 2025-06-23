@@ -1,0 +1,31 @@
+#equipmentTable .column-header {
+    -fx-background-color:#646464;
+    -fx-font-weight: bold;
+    -fx-min-height: 30px;
+    -fx-pref-height: 40px;
+    -fx-max-height: 50px;
+}
+#equipmentTable .column-header .label {
+    -fx-text-fill: #f3f5f5;
+}
+.table-row-cell {
+    -fx-min-height: 100px;
+    -fx-pref-height: 100px;
+}
+.table-cell {
+    -fx-alignment: CENTER;
+}
+.table-view .scroll-bar:vertical {
+    -fx-opacity: 0;
+    -fx-max-width: 0;
+    -fx-pref-width: 0;
+    -fx-min-width: 0;
+}
+.combo-box {
+    -fx-font-size: 13px;
+}
+
+.button {
+    -fx-cursor: hand;
+    -fx-font-size: 13px;
+}
