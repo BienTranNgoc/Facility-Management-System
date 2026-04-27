@@ -226,7 +226,7 @@ Facility-Management-System/
 
 ## Author / Contact
 
-- **Name:** `<YOUR_NAME>`
-- **LinkedIn:** `<YOUR_LINKEDIN_URL>`
-- **Email:** `<YOUR_EMAIL>`
+- **Name:** `Bien Tran Ngoc`
+- **LinkedIn:** `www.linkedin.com/in/bientrandev`
+- **Email:** `bientran.dev@gmail.com`
 
