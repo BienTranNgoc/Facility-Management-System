@@ -39,9 +39,39 @@ This repository is a **modular monolith backend + multi-client architecture** (n
 
 Communication is HTTP/JSON from both clients to the backend API.
 
-> **System Diagram Placeholder**  
-> Replace with your architecture diagram image link (e.g., PlantUML output):  
-> `![Architecture Diagram](<YOUR_ARCHITECTURE_DIAGRAM_URL>)`
+> **System Diagram (PlantUML Source)**  
+> Paste the block below into PlantUML to generate the diagram image:
+
+```plantuml
+@startuml
+title FacilityFlow - System Architecture
+left to right direction
+skinparam componentStyle rectangle
+
+actor "Admin / Facility Manager /\nTechnician / User" as User
+
+node "Client Layer" {
+  component "Web Client\n(React + TypeScript + Vite)" as WebClient
+  component "Desktop Client\n(JavaFX)" as DesktopClient
+}
+
+node "Application Layer" {
+  component "Facility API\n(Spring Boot)\nContext Path: /facility" as Api
+}
+
+database "MySQL Database\nfacility" as DB
+folder "Static Media\n/images/**" as Media
+
+User --> WebClient : Use via browser
+User --> DesktopClient : Use desktop app
+
+WebClient --> Api : HTTP/JSON (REST)
+DesktopClient --> Api : HTTP/JSON (REST)
+
+Api --> DB : JPA/Hibernate
+Api --> Media : Serve static files
+@enduml
+```
 
 ### Tech Stack
 
@@ -229,4 +259,3 @@ Facility-Management-System/
 - **Name:** `Bien Tran Ngoc`
 - **LinkedIn:** `www.linkedin.com/in/bientrandev`
 - **Email:** `bientran.dev@gmail.com`
-
