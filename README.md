@@ -39,9 +39,7 @@ This repository is a **modular monolith backend + multi-client architecture** (n
 
 Communication is HTTP/JSON from both clients to the backend API.
 
-> **System Diagram Placeholder**  
-> Replace with your architecture diagram image link (e.g., PlantUML output):  
-> `![Architecture Diagram](<YOUR_ARCHITECTURE_DIAGRAM_URL>)`
+> **System Diagram:**  [System Diagram](https://www.planttext.com?text=VP9FRzim3CNl-XI4Jqs7mFSUXZhDWYvejgpE_XnyOMGc8IfBWiIcCuPzzqcEbo27xIQHFxr7FkW-2WPvxOmI5aEmGCs6fLyOzmPJgFier44Lz865jBm6KePs0k8WyFuWq798TNPMnHUs7WDse5tddIKhjVH9CmDezuQKGYqkG56r7LiepswmGejx2b0sTaFwO5apPk1hf500nk6Wb7KjGV5WE6d34_Qv-Kl1nH2AxxI54z3OcsTAXl0EDhsdMWVs-V8jRJ8PH1DxGgybvXHVnFcBp1AFkFXnUZCsntU__yvKUMzOOmxY7uETTwtM7vDcxGFRFSoSaqbZ7vmL-YcmHZdSGRaRsS6nyfnzMXJSOanUgxx-yWJpyTxOAte-KpjdsfHbKKkQHyEAMiR6bjobY6DvUpjmGrMfd2jCf-ylMS1T3XkEZB0DxYtdVeQkbX_1TamBlLVgefBnD7c27ZURTRciFt-2c-SFzMQYhbN-0wfS7tndgRrSL-KZRobO53gtXZrIjwPm98YdbNTiAAfxictwsNy0)
 
 ### Tech Stack
 
@@ -227,6 +225,5 @@ Facility-Management-System/
 ## Author / Contact
 
 - **Name:** `Bien Tran Ngoc`
-- **LinkedIn:** `www.linkedin.com/in/bientrandev`
+- **LinkedIn:** [bientrandev](https://www.linkedin.com/in/bientrandev/)
 - **Email:** `bientran.dev@gmail.com`
-
